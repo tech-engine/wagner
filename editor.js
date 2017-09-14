@@ -77,7 +77,8 @@ sL.onLoaded( function () {
         },
         vertexShader: this.get( 'depth-vs' ),
         fragmentShader: this.get( 'depth-fs' ),
-        shading: THREE.SmoothShading
+        //shading: THREE.SmoothShading
+        flatShading: false
     } );
 } );
 
@@ -128,7 +129,7 @@ function init() {
 
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera( fov, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera = new THREE.PerspectiveCamera( fov, window.innerWidth / window.innerHeight, 0.1, 100000 );
     camera.position.z = 1000;
     scene.add( camera );
 
@@ -233,7 +234,7 @@ function onWindowResize() {
         h = window.innerHeight;
 
     renderer.setSize( s * w, s * h );
-    camera.projectionMatrix.makePerspective( fov, w / h, camera.near, camera.far );
+    //camera.projectionMatrix.makePerspective( fov, w / h, camera.near, camera.far );
     composer.setSize( w, h );
     depthTexture = WAGNER.Pass.prototype.getOfflineTexture( w, h, true );
     /*normalTexture = WAGNER.Pass.prototype.getOfflineTexture( w, h );
